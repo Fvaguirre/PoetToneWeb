@@ -12,6 +12,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
 
+    # Relationship to child
+    liked_poems = db.relationship("Poem", back_populates="poem_users")
+
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
@@ -61,5 +64,7 @@ class Poem(db.Model):
     tags = db.Column(db.String(60))
     source = db.Column(db.String(20))
 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    poem_users = db.relationship("User", back_populates="liked_poems")
     #Relationship to child
     poem_feature = db.relationship("PoemFeature", uselist=False, back_populates="poem")
