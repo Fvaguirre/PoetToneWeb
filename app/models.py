@@ -5,7 +5,10 @@ from app import db, login
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
+likes = db.Table('likes',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('poem_id', db.Integer, db.ForeignKey('poem.id'))
+)
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -13,7 +16,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
 
     # Relationship to child
-    liked_poems = db.relationship("Poem", back_populates="poem_users")
+    liked_poems = db.relationship("Poem", secondary=likes, backref=db.backref('likers', lazy='dynamic'))
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -37,6 +40,7 @@ class PoemFeature(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     close_poem = db.Column(db.Integer)
     top_topic = db.Column(db.Integer)
+    times_liked = db.Column(db.Integer, default=0)
 
     #Relationship to parent
     poem_id = db.Column(db.Integer, db.ForeignKey('poem.id'))
@@ -64,7 +68,6 @@ class Poem(db.Model):
     tags = db.Column(db.String(60))
     source = db.Column(db.String(20))
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    poem_users = db.relationship("User", back_populates="liked_poems")
+
     #Relationship to child
     poem_feature = db.relationship("PoemFeature", uselist=False, back_populates="poem")

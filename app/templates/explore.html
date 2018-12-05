@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!--<h1>Hi, {{ current_user.username }}!</h1>-->
+    <hr>
+
+
+    <div class="container">
+                {% for poem in poems%}
+                    {% include '_poem.html' %}
+                {% endfor %}
+    </div>
+    <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> View previous poems
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    View more poems <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+{% endblock %}

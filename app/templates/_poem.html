@@ -1,0 +1,24 @@
+
+    <div class="row">
+      <div class="jumbotron jumbotron-fluid">
+          <h3 class="display-4">
+              {{ poem.title }}
+          </h3>
+          <p class="lead">
+              By {{ poem.poet }}
+          </p>
+          <hr class="my-4">
+          <p>
+              {{ poem.text }}
+          </p>
+          <br>
+          <p class="lead">
+            {% if poem in current_user.liked_poems %}
+              <a class="btn btn-danger" href="{{ url_for('like_action', poem_id=poem.id, action='unlike') }}">Unlike</a>
+            <!--<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>-->
+              {% else %}
+                <a class="btn btn-success" href="{{ url_for('like_action', poem_id=poem.id, action='like') }}">Like</a>
+              {% endif %}
+          </p>
+        </div>
+    </div>
