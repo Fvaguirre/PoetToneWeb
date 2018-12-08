@@ -1,24 +1,28 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
     <!--<h1>Hi, {{ current_user.username }}!</h1>-->
     <hr>
 
 
-    <div class="container">
-                {% for poem in poems%}
+    <div class="card-columns">
+                {% for poem in poems %}
                     {% include '_poem.html' %}
                 {% endfor %}
     </div>
-    <ul class="pager">
-            <li class="previous{% if not prev_url %} disabled{% endif %}">
+
+    <ul class="pagination justify-content-center">
+        <div class="col">
+            <li class="page-item {% if not prev_url %}disabled{% endif %} ">
                 <a href="{{ prev_url or '#' }}">
-                    <span aria-hidden="true">&larr;</span> View previous poems
+                    View previous poems
                 </a>
             </li>
-            <li class="next{% if not next_url %} disabled{% endif %}">
+        </div>
+
+            <li class="page-item {% if not next_url %}disabled{% endif %}">
                 <a href="{{ next_url or '#' }}">
-                    View more poems <span aria-hidden="true">&rarr;</span>
+                    View more poems
                 </a>
             </li>
         </ul>
