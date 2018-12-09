@@ -1,0 +1,38 @@
+
+      <div class="card">
+          <div class="card-body">
+          <div class="card-title">
+              <a href="{{ url_for('view_poem', poem_id=poem.id) }}">
+                  <h5>{{ poem.title }}</h5>
+              </a>
+          </div>
+
+          <p>
+              By {{ poem.poet }}
+          </p>
+              {% set previewLine = poem.text.split('\n')[0] %}
+
+          <hr class="my-4">
+          <pre>{{ previewLine }} ...</pre>
+              {% set tagsArray = poem.tags.split(',') %}
+              <small>Tags:
+              {% for tag in tagsArray %}
+                {% if tag != tagsArray[tagsArray|length -1] %}
+                <i>{{ tag }}, </i>
+                {% else %}
+                    <i> {{ tag }}</i>
+                {% endif %}
+              {% endfor %}
+              </small>
+          <br>
+              <p></p>
+          <p>
+            {% if poem in current_user.liked_poems %}
+              <a class="btn btn-danger" data-poem_id="{{ poem.id }}"  href="{{ url_for('like_action', poem_id=poem.id, action='unlike') }}">Unlike</a>
+            <!--<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>-->
+              {% else %}
+                <a class="btn btn-success" data-poem_id="{{ poem.id }}" href="{{ url_for('like_action', poem_id=poem.id, action='like') }}">Like</a>
+              {% endif %}
+          </p>
+          </div>
+        </div>

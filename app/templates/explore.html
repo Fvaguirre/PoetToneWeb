@@ -5,10 +5,11 @@
     <hr>
 
 
-    <div class="card-columns">
+    <div class="container">
                 {% for poem in poems %}
-                    {% include '_poem.html' %}
+                    {% include '_poem_prev.html' %}
                 {% endfor %}
+
     </div>
 
     <ul class="pagination justify-content-center">

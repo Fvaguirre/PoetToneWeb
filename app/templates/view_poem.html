@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block app_content %}
+<head>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+<script>
+    function test_func(data) {
+        console.log(data);
+        responsiveVoice.speak(data);
+    }
+    <!--test_func({{ data|safe }})-->
+</script>
+		<!--<script type=text/javascript>-->
+            <!--$(document).ready(function() {-->
+                <!--$('#play').click(function(){-->
+                <!--var obj = document.createElement("audio");-->
+                <!--obj.src = 'http://www.soundjay.com/misc/sounds/bell-ringing-01.mp3';-->
+                <!--obj.volume = 0.1;-->
+                <!--obj.autoPlay = false;-->
+                <!--obj.preLoad = true;-->
+                <!--obj.controls = true;-->
+                <!--$(".playSound").click(function() {-->
+                    <!--obj.play();-->
+                <!--// obj.pause();-->
+              <!--});-->
+            <!--});-->
+		<!--</script>-->
+</head>
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+
+                      <div class="card-body">
+                      <div class="card-title">
+                          {{ poem.title }}
+                      </div>
+
+                      <p class="lead">
+                          By {{ poem.poet }}
+                      </p>
+                      <hr class="my-4">
+
+                      <pre>{{ poem.text }}</pre>
+
+                      <br>
+                      <p class="lead">
+                        {% if poem in current_user.liked_poems %}
+                          <a class="btn btn-danger" data-poem_id="{{ poem.id }}"  href="{{ url_for('like_action', poem_id=poem.id, action='unlike') }}">Unlike</a>
+                        <!--<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>-->
+                          {% else %}
+                            <a class="btn btn-success" data-poem_id="{{ poem.id }}" href="{{ url_for('like_action', poem_id=poem.id, action='like') }}">Like</a>
+                          {% endif %}
+                          <button id="play" onclick="test_func('{{ data|safe }}')" class="playSound">Play</button>
+                      </p>
+                      </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                <h5>Similar Poems</h5>
+                <hr>
+            {% set count = poem.text.split('\n\n')|length %}
+            {% for poem in poem.similars[0: ((count/2)|int) - 1] %}
+                    {% include '_poem_prev.html' %}
+            {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

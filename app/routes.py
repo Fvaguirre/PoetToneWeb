@@ -5,6 +5,7 @@ from app.forms import LoginForm, RegistrationForm
 from app.models import User, Poem
 from app.recommender import content_engine
 from werkzeug.urls import url_parse
+import json
 
 # @app.before_first_request
 # def loadRecommender():
@@ -103,7 +104,9 @@ def explore(type):
             target_ids = [poem.id for poem in target_poems]
 
             print(target_poems)
-            poems = Poem.query.filter((Poem.id.notin_(ignore_ids)) | (Poem.id.in_(target_ids)))
+            poems = Poem.query.filter(Poem.id.in_(target_ids))
+            poems = Poem.query.filter(Poem.id.notin_(ignore_ids))
+            # poems = Poem.query.filter((Poem.id.notin_(ignore_ids)) | (Poem.id.in_(target_ids)))
             # liked = current_user.liked_poems
             # liked_ids = map(lambda x: x.id, liked)
             # poems = Poem.query.filter(~Poem.id.any(Poem.id.in_(liked_ids)))
@@ -130,6 +133,12 @@ def like_action(poem_id, action):
         poem.times_liked -= 1
     db.session.commit()
     return redirect(request.referrer)
+
+@app.route('/view/<int:poem_id>')
+@login_required
+def view_poem(poem_id):
+   poem_to_load = Poem.query.filter_by(id=poem_id).first_or_404()
+   return render_template('view_poem.html', title='Poem ' + str(poem_to_load.title), data=json.dumps(poem_to_load.text), poem=poem_to_load)
 
 
 

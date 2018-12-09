@@ -1,32 +1,38 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <div class="container-fluid">
+<style>
+    a.card,
+    a.card:hover {
+    color: #212529;
+    text-decoration: none;
+}
+</style>
 
         <div class="jumbotron jumbotron-fluid">
 
             <div class="card-columns">
-              <div class="card text-white text-center bg-primary">
+              <a href="{{ url_for('explore', type='popular') }}" class="card text-white text-center bg-primary">
                 <div class="card-body">
                   <h5 class="card-title">Sadness</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-              </div>
-              <div class="card text-white text-center bg-warning">
+              </a>
+              <a href="#" class="card text-white text-center bg-warning">
                 <div class="card-body">
                   <h5 class="card-title">Joy</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-              </div>
-              <div class="card text-white text-center bg-danger">
+              </a>
+              <a href="#" class="card text-white text-center bg-danger">
                 <div class="card-body">
                   <h5 class="card-title">Anger</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-              </div>
+              </a>
               <div class="card text-center">
                   <div class="card-body">
 
@@ -42,31 +48,32 @@
                       <button type="button" class="btn">Randomize</button>
                   </div>
               </div>
-              <div class="card text-white text-center bg-dark">
+              <a href="#" class="card text-white text-center bg-dark">
                 <div class="card-body">
                   <h5 class="card-title">Fear</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    <button type="button" class="btn">Randomize</button>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-              </div>
+              </a>
 
-             <div class="card text-white text-center bg-secondary">
+             <a href="#" class="card text-white text-center bg-secondary">
                 <div class="card-body">
                   <h5 class="card-title">Thoughtful</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-              </div>
-              <div class="card text-white text-center bg-success">
+              </a>
+              <a href="#" class="card text-white text-center bg-success">
                 <div class="card-body">
                   <h5 class="card-title">Disgust</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-              </div>
+              </a>
             </div>
         </div>
-    </div>
+    <!--</div>-->
 
     <!--{% for post in posts %}-->
     <!--<div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>-->
