@@ -1,5 +1,6 @@
 import numpy as np
-#import pandas as pd
+import pandas as pd
+import nltk
 
 def rhyme(inp, level):
      entries = nltk.corpus.cmudict.entries()
@@ -45,6 +46,41 @@ def evaluate(istr):
      if(result==""):
           result=("--No Rhyme--")
      print(result)
+     print ("--sentences for similes  in first poem--")
+     for sen in Sentence_set:
+          sen_break = sen.split();
+          if (( "like"  in sen_break) or ("as"  in sen_break)):
+               print (sen)  
+     
+     print ("--sentences for alliterations  in first poem--")
+     for sen in Sentence_set:
+          sen_break = sen.split();
+          if (sen_break is None or  len(sen_break) == 0 or sen_break==" "):
+               continue
+          counter=1
+          threeorfour=1
+          last_character=''
+          for ele_in in sen_break:
+               if (ele_in[0]==last_character):
+                    threeorfour+=1
+                    if(counter==3):
+                         print (" ".join(sen_break) )
+               if(counter==1):
+                    last_character=ele_in[0]
+               counter+=1
+     
+     print ("--sentences for repetitions   in first poem--")
+     for sen in Sentence_set:
+          sen_break = sen.split();
+          if (sen_break is None or  len(sen_break) == 0 or sen_break==" "):
+               continue
+          for ele_in in sen_break:
+               sen_break.remove(ele_in)
+               if (ele_in in sen_break):
+                    print (sen +"      -word of Repetitions:"+ ele_in)     
+
+
+     
      print(S_set)
      return
 
