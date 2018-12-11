@@ -24,7 +24,7 @@ def doTheyRhyme ( word1, word2 ):
 def similies(Sentence_set):
     result = []
     for sen in Sentence_set:
-        sen_break = sen.split();
+        sen_break = sen.split()
         if (( "like"  in sen_break) or ("as"  in sen_break)):
             result.append(sen)
     return result
@@ -51,7 +51,7 @@ def alliter(Sentence_set):
 def repetition(Sentence_set):
     result = []
     for sen in Sentence_set:
-        sen_break = sen.split();
+        sen_break = sen.split()
         if (sen_break is None or  len(sen_break) == 0 or sen_break==" "):
             continue
         for ele_in in sen_break:
