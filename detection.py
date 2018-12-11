@@ -21,22 +21,6 @@ def doTheyRhyme ( word1, word2 ):
 
     return word1 in rhyme ( word2, 1 )
 
-def rhymetype (Set,line):
-    result=""
-    for word in line:
-        if(len(Set)%4==0):
-            if(  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-3] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==True and doTheyRhyme(Set[len(Set)-2], Set[len(Set)-1] )==True):
-                result= ("--AAAA--")
-            elif (  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-3] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==False and doTheyRhyme(Set[len(Set)-2], Set[len(Set)-1] )==True):
-                result =("--AABB--")
-            elif (  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-2] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-1] )==False and doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==False):
-                result =("--ABAB--")
-            elif (  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-1] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-1] )==False and doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==True):
-                result =("--ABBA--")
-    if(result==""):    
-        result= ("--No Rhyme--")
-    return result
-
 def similies(Sentence_set):
     result = []
     for sen in Sentence_set:
