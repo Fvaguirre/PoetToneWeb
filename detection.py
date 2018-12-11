@@ -21,16 +21,22 @@ def doTheyRhyme ( word1, word2 ):
 
     return word1 in rhyme ( word2, 1 )
 
-def similies(Sentence_set):
-    result = []
+def similes(Sentence_set):
+    result = {'sen_num': None, 'alliter': None, 'repetition': None, 'simile': None}
+    i = 1
     for sen in Sentence_set:
         sen_break = sen.split()
         if (( "like"  in sen_break) or ("as"  in sen_break)):
-            result.append(sen)
+            result['sen_num'] = i
+            result['simile'] = sen
+        i += 1
+    if (result['sen_num'] == None):
+        return None
     return result
 
 def alliter(Sentence_set):
-    result = []
+    result = {'sen_num': None, 'alliter': None, 'repetition': None, 'simile': None}
+    i = 0
     for sen in Sentence_set:
         sen_break = sen.split();
         if (sen_break is None or  len(sen_break) == 0 or sen_break==" "):
@@ -42,14 +48,19 @@ def alliter(Sentence_set):
             if (ele_in[0]==last_character):
                 threeorfour+=1
                 if(counter==3):
-                    result.append(" ".join(sen_break) )
+                    result['sen_num'] = i
+                    result['alliter'] = (" ".join(sen_break))
             if(counter==1):
                 last_character=ele_in[0]
-            counter+=1     
+            counter+=1   
+        i += 1
+    if (result['sen_num'] == None):
+        return None    
     return result
 
 def repetition(Sentence_set):
-    result = []
+    result = {'sen_num': None, 'alliter': None, 'repetition': None, 'simile': None}
+    i = 0
     for sen in Sentence_set:
         sen_break = sen.split()
         if (sen_break is None or  len(sen_break) == 0 or sen_break==" "):
@@ -57,7 +68,11 @@ def repetition(Sentence_set):
         for ele_in in sen_break:
             sen_break.remove(ele_in)
             if (ele_in in sen_break):
-                result.append(sen +"      -word of Repetitions:"+ ele_in)    
+                result['sen_num'] = i
+                result['repetition'] = (sen +"      -word of Repetitions:"+ ele_in)
+        i += 1
+    if (result['sen_num'] == None):
+        return None     
     return result
 
 if __name__ == "__main__":
@@ -94,7 +109,7 @@ if __name__ == "__main__":
     print(result)           
    
     print ("--sentences for similes  in first poem--")
-    print (similies(Sentence_set)) 
+    print (similes(Sentence_set)) 
    
     print ("--sentences for alliterations  in first poem--")
     print (alliter(Sentence_set))  
