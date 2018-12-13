@@ -80,14 +80,18 @@ def rhymetype(lock, Set):
     result = ""
     if(len(Set)==4):
         print(Set[0], Set[1],Set[2],Set[3])
-        if(  doTheyRhyme(Set[0], Set[1] )==True and doTheyRhyme(Set[1], Set[2])==True and doTheyRhyme(Set[2], Set[3] )==True):
-            result= ("--AAAA--")
-        elif (  doTheyRhyme(Set[0], Set[1] )==True and doTheyRhyme(Set[2], Set[3])==True):
-            result =("--AABB--")
-        elif (  doTheyRhyme(Set[0], Set[2] )==True and doTheyRhyme(Set[1], Set[3])==True):
-            result =("--ABAB--")
-        elif (  doTheyRhyme(Set[0], Set[3] )==True and doTheyRhyme(Set[1], Set[2])==True):
-            result =("--ABBA--")         
+        one_two = doTheyRhyme(Set[0],Set[1])
+        two_three = doTheyRhyme(Set[1],Set[2])
+        three_four = doTheyRhyme(Set[2],Set[3])
+        one_three = doTheyRhyme(Set[0],Set[2])
+        two_four = doTheyRhyme(Set[1],Set[3])
+        one_four = doTheyRhyme(Set[0],Set[3])
+        two_three = doTheyRhyme(Set[1],Set[2])
+        if(one_two and two_three and three_four): result = "-AAAA-"
+        elif(one_two and two_three): result = "-AABB-"
+        elif(one_three and two_four): result = "-ABAB-"
+        elif(one_four and two_three): result = "-ABBA-"
+        
     if(result==""):    
         result= ("--No Rhyme--")
     print(result)
@@ -136,30 +140,3 @@ if __name__ == "__main__":
 
     print ("--sentences for repetitions   in first poem--")
     print (repetition(Sentence_set))    
-    
-    
-"""     
-    for li in line:
-        #print(li)
-        Sentence_set.append(li)
-        sp=li.split()
-        if ("".join(sp[-1:]) is None or  len("".join(sp[-1:])) == 0 or "".join(sp[-1:])==" "):
-            continue
-        #print (str(i)+" "+"".join(sp[-1:]))
-        Set.append("".join(sp[-1:]) )
-        if(len(Set)%4==0):
-            if(  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-3] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==True and doTheyRhyme(Set[len(Set)-2], Set[len(Set)-1] )==True):
-                result= ("--AAAA--")
-                results.append(result)
-            elif (  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-3] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==False and doTheyRhyme(Set[len(Set)-2], Set[len(Set)-1] )==True):
-                result =("--AABB--")
-                results.append(result)
-            elif (  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-2] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-1] )==False and doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==False):
-                result =("--ABAB--")
-                results.append(result)
-            elif (  doTheyRhyme(Set[len(Set)-4], Set[len(Set)-1] )==True and  doTheyRhyme(Set[len(Set)-3], Set[len(Set)-1] )==False and doTheyRhyme(Set[len(Set)-3], Set[len(Set)-2] )==True):
-                result =("--ABBA--")
-                results.append(result)
-    if(result==""):    
-        result= ("--No Rhyme--")
-        results.append(result)"""               
