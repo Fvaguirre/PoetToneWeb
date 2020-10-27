@@ -10,7 +10,7 @@ chardet==2.3.0
 click==6.7
 click-default-group==1.2
 cloudant==2.4.0
-cryptography==1.8.1
+cryptography==3.2
 Cython==0.29.1
 datapackage==1.5.1
 docutils==0.14
