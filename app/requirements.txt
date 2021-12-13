@@ -37,7 +37,7 @@ jsonpointer==1.14
 jsonschema==2.6.0
 linear-tsv==1.1.0
 lockfile==0.12.2
-lxml==3.7.3
+lxml==4.6.5
 Mako==1.0.7
 MarkupSafe==1.0
 numpy==1.15.4
