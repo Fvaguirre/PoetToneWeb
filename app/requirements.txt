@@ -40,7 +40,7 @@ lockfile==0.12.2
 lxml==3.7.3
 Mako==1.0.7
 MarkupSafe==1.0
-numpy==1.15.4
+numpy==1.22.0
 openpyxl==2.4.11
 packaging==16.8
 pandas==0.23.4
